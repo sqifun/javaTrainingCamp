@@ -1,4 +1,4 @@
-package com.sqifun.trainingcamp.week2.part6;
+package com.sqifun.jtc.week2;
 
 import okhttp3.Call;
 import okhttp3.OkHttpClient;

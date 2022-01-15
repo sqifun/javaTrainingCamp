@@ -1,4 +1,4 @@
-package com.sqifun.trainingcamp.week2.part6;
+package com.sqifun.jtc.week2;
 
 import java.io.IOException;
 import java.io.PrintWriter;
