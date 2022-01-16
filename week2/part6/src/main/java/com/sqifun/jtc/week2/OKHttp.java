@@ -21,10 +21,10 @@ import java.io.IOException;
 public class OKHttp {
 
     public static void main(String[] args) {
-        String url = "http://www.baidu.com";
-//        String url = "http://localhost:8801";
-//        doGet(url);
-        doGetAsync(url);
+//        String url = "http://www.baidu.com";
+        String url = "http://localhost:8801";
+        doGet(url);
+//        doGetAsync(url);
     }
 
     /**
