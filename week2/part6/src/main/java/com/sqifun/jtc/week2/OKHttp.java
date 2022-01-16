@@ -1,10 +1,12 @@
 package com.sqifun.jtc.week2;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -19,17 +21,22 @@ import java.io.IOException;
 public class OKHttp {
 
     public static void main(String[] args) {
-//        String uri = "http://www.baidu.com";
-        String uri = "http://localhost:8801";
-        doGet(uri);
+        String url = "http://www.baidu.com";
+//        String url = "http://localhost:8801";
+//        doGet(url);
+        doGetAsync(url);
     }
 
-    public static void doGet(String uri) {
+    /**
+     * 同步调用
+     * @param url 路径
+     */
+    public static void doGet(String url) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
                 .get()
-                .url(uri)
+                .url(url)
                 .build();
 
         Call call = client.newCall(request);
@@ -43,7 +50,45 @@ public class OKHttp {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            call.cancel();
         }
     }
+
+
+    /**
+     * 异步调用
+     * @param url 路径
+     */
+    public static void doGetAsync(String url) {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .get()
+                .url(url)
+                .build();
+        Call call = client.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected code " + response);
+                    }
+                    if (responseBody != null) {
+                        System.out.println(responseBody.string());
+                    }
+                }
+            }
+        });
+
+    }
+
 
 }
