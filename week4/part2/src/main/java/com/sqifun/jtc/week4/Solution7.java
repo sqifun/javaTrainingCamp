@@ -4,8 +4,8 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution7
+ * @description: CountDownLatch
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0

@@ -2,8 +2,8 @@ package com.sqifun.jtc.week4;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution5
+ * @description: wait、notify
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0

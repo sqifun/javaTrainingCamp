@@ -1,35 +1,38 @@
 package com.sqifun.jtc.week4;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution8
+ * @description: BlockingQueue 阻塞队列
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0
  **/
 public class Solution8 {
 
-    public static int result = 0;
 
     public static void main(String[] args) {
 
         long start = System.currentTimeMillis();
 
-        Thread thread = new Thread(() -> result = sum());
-        thread.start();
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1);
 
-        while (true) {
-            if (thread.isAlive()) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e){
-                    e.printStackTrace();
-                }
+        Thread thread = new Thread(() -> {
+            try {
+                queue.put(sum());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            else {
-                break;
-            }
+        });
+        thread.start();
+        Integer result = null;
+        try {
+            result = queue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         System.out.println("异步计算结果为：" + result);

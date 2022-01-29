@@ -1,32 +1,39 @@
 package com.sqifun.jtc.week4;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution4
+ * @description: 主线程监控工作线程执行情况
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0
  **/
 public class Solution4 {
 
+    public static int result = 0;
+
     public static void main(String[] args) {
+
         long start = System.currentTimeMillis();
 
-        Integer result = null;
-        CompletableFuture<Integer> integerCompletableFuture = CompletableFuture.supplyAsync(Solution4::sum);
+        Thread thread = new Thread(() -> result = sum());
+        thread.start();
 
-        try {
-            result = integerCompletableFuture.get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
+        while (true) {
+            if (thread.isAlive()) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            else {
+                break;
+            }
         }
 
         System.out.println("异步计算结果为：" + result);
-        System.out.println("使用时间：" + (System.currentTimeMillis() - start) + " ms");
+        System.out.println("使用时间："+ (System.currentTimeMillis()-start) + " ms");
     }
 
     private static int sum() {

@@ -1,12 +1,11 @@
 package com.sqifun.jtc.week4;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution10
+ * @description: LockSupport
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0
@@ -19,21 +18,14 @@ public class Solution10 {
 
         long start = System.currentTimeMillis();
 
-        CyclicBarrier barrier = new CyclicBarrier(2);
+        Thread mainThread = Thread.currentThread();
+
         Thread t = new Thread(() -> {
-            try {
-                result = sum();
-                barrier.await();
-            } catch (InterruptedException | BrokenBarrierException e) {
-                e.printStackTrace();
-            }
+            result = sum();
+            LockSupport.unpark(mainThread);
         });
         t.start();
-        try {
-            barrier.await();
-        } catch (InterruptedException | BrokenBarrierException e) {
-            e.printStackTrace();
-        }
+        LockSupport.park();
 
         System.out.println("异步计算结果为：" + result);
         System.out.println("使用时间："+ (System.currentTimeMillis()-start) + " ms");

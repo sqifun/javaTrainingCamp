@@ -5,8 +5,8 @@ import java.util.concurrent.FutureTask;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution2
+ * @description: FutureTask
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0

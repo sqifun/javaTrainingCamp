@@ -6,8 +6,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution6
+ * @description: Lock、Condition
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0

@@ -3,7 +3,7 @@ package com.sqifun.jtc.week4;
 /**
  * @program: week4-part2
  * @className: Solution1
- * @description:
+ * @description: join
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0

@@ -1,37 +1,37 @@
 package com.sqifun.jtc.week4;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution9
+ * @description: CyclicBarrier
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0
  **/
 public class Solution9 {
 
+    public static int result = 0;
 
     public static void main(String[] args) {
 
         long start = System.currentTimeMillis();
 
-        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1);
-
-        Thread thread = new Thread(() -> {
+        CyclicBarrier barrier = new CyclicBarrier(2);
+        Thread t = new Thread(() -> {
             try {
-                queue.put(sum());
-            } catch (InterruptedException e) {
+                result = sum();
+                barrier.await();
+            } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
         });
-        thread.start();
-        Integer result = null;
+        t.start();
         try {
-            result = queue.take();
-        } catch (InterruptedException e) {
+            barrier.await();
+        } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();
         }
 

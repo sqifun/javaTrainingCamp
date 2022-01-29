@@ -7,8 +7,8 @@ import java.util.concurrent.Future;
 
 /**
  * @program: week4-part2
- * @className: Solution1
- * @description:
+ * @className: Solution3
+ * @description: 线程池 Future
  * @author: sqi
  * @date: 2022-01-25 21:18
  * @version: 1.0
