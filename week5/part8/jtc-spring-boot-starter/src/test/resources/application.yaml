@@ -1,0 +1,9 @@
+jtc:
+  student:
+    id: 1
+    name: sqifun
+  classes:
+    - id: 1
+      name: qq
+    - id: 2
+      name: aa
