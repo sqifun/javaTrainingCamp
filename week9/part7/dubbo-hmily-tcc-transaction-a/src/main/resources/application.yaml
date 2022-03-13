@@ -1,0 +1,31 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: dubbo-hmily-tcc-transaction-a
+  datasource:
+    url: jdbc:mysql://43.129.216.41:3306/db_a?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: sqifun
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+dubbo:
+  scan:
+    base-packages: com.sqifun.jtc.week9.provider
+  protocol:
+    name: dubbo
+    port: 12346
+  registry:
+    address: zookeeper://localhost:2181
+  metadata-report:
+    address: zookeeper://localhost:2181
+  application:
+    qosEnable: true
+    qosPort: 22222
+    qosAcceptForeignIp: true
+    qos-enable-compatible: true
+    qos-host-compatible: localhost
+    qos-port-compatible: 22222
+    qos-accept-foreign-ip-compatible: true
+    qos-host: localhost
