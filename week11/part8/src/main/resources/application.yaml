@@ -1,0 +1,12 @@
+spring:
+  redis:
+    host: 43.129.216.41
+    password: sqi123456
+    port: 6379
+    timeout: 60000
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
