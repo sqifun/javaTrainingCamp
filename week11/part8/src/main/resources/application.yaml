@@ -1,7 +1,7 @@
 spring:
   redis:
-    host: 43.129.216.41
-    password: sqi123456
+    host: 43.*.*.*
+    password: s*
     port: 6379
     timeout: 60000
     lettuce:
